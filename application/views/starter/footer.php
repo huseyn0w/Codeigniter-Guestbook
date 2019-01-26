@@ -47,7 +47,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <!-- Bootstrap core JavaScript -->
 <script src="<?php echo asset_url() ?>/vendor/jquery/jquery.min.js"></script>
-<script src="<?php echo asset_url() ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?php echo asset_url() ?>/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- Custom scripts for this template -->
 <script src="<?php echo asset_url() ?>/js/clean-blog.min.js"></script>
@@ -55,4 +55,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </body>
 
 </html>
+
 

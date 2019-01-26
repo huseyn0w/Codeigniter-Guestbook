@@ -1,5 +1,8 @@
-<?php require_template_part('header') ?>
+<?php
 
+$auth_error = $this->session->flashdata('LOGIN_FAIL');
+
+require_template_part('header', $auth_error ); ?>
 
 
     <!-- Main Content -->
