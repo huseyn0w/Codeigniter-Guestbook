@@ -14,6 +14,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <!-- Custom scripts for this template -->
 <script src="<?php echo asset_url() ?>/js/clean-blog.min.js"></script>
+<script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
+
+
+<script src="<?php echo asset_url() ?>/js/main.js"></script>
 
 </body>
 

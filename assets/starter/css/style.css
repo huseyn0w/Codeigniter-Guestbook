@@ -11,3 +11,13 @@ body.register{
     background-position: left;
     background-image: url(http://guestbook//assets/starter/img/home-bg.jpg);
 }
+
+.mce-notification-inner,
+.mce-close{
+    display: none !important;
+}
+
+.mce-notification-warning {
+    background-color: transparent !important;
+    border-color: transparent !important;
+}

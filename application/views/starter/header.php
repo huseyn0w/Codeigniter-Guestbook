@@ -30,6 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <!-- Custom styles for this template -->
     <link href="<?php echo asset_url() ?>/css/clean-blog.min.css" rel="stylesheet">
+
     <link href="<?php echo asset_url() ?>/css/style.css" rel="stylesheet">
 
 </head>
