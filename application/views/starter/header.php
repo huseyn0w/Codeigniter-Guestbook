@@ -34,10 +34,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 </head>
 
-<body>
+<body class="<?php echo uri_string() ?>">
 
 <?php require_template_part('nav') ?>
 
+<?php if(uri_string() !== "register"): ?>
 <!-- Page Header -->
 <header class="masthead" style="background-image: url('<?php echo asset_url() ?>/img/home-bg.jpg')">
     <div class="overlay"></div>
@@ -52,7 +53,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
     </div>
 </header>
+<?php endif; ?>
 
-<?php require_template_part('login_modal', $data) ?>
+<?php if(!is_logged_in()) require_template_part('login_modal', $data) ?>
 
 

@@ -29,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="form-group">
                             <?php
 
-                                $email_data = array(
+                                $username_data = array(
                                         'name'          => 'username',
                                         'id'            => 'username',
                                         'type'          => 'text',
@@ -41,7 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         'maxlength'     => '20'
                                 );
 
-                                echo form_input($email_data);
+                                echo form_input($username_data);
                             ?>
                         </div>
                         <div class="form-group">
@@ -72,7 +72,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     );
 
                     echo form_submit($submit_data);
-                    echo form_close() ;
+                    echo form_close();
                 ?>
                 <a href="/forgot" type="button" class="btn btn-secondary">Forgot password?</a>
             </div>

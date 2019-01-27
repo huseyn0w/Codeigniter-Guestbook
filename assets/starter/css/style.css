@@ -1,0 +1,13 @@
+.auth_cover{
+    padding-top: 80px;
+}
+
+body.register{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: left;
+    background-image: url(http://guestbook//assets/starter/img/home-bg.jpg);
+}

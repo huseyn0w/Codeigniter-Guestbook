@@ -37,8 +37,8 @@ class Users extends CI_Controller {
 
             if ($this->form_validation->run() === TRUE)
             {
-                $username = filter_var($this->input->post('username'));
-                $password = filter_var($this->input->post('password'));
+                $username = filter_var($this->input->post('username'), FILTER_SANITIZE_STRING);
+                $password = $this->input->post('password');
                 $this->load->model('users_model');
                 $result = $this->users_model->auth($username, $password);
                 if($result === TRUE)
@@ -54,6 +54,9 @@ class Users extends CI_Controller {
                 }
 
 
+            }
+            else{
+                $this->session->set_flashdata('LOGIN_FAIL', 'Wrong credentials, please try again');
             }
 
 
@@ -71,5 +74,48 @@ class Users extends CI_Controller {
         $this->session->unset_userdata($session_data);
         $this->session->sess_destroy();
         redirect(BASE_URL);
+    }
+
+    public function register()
+    {
+        $registerButton = $this->input->post('try_to_register');
+
+        if(isset($registerButton))
+        {
+
+            $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+            $this->form_validation->set_rules('username', 'Username', 'required');
+            $this->form_validation->set_rules('fullname', 'Fullname', 'required');
+            $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
+            $this->form_validation->set_rules('password_confirm', 'Password Confirm', 'required|min_length[6]|matches[password]');
+
+
+            if ($this->form_validation->run() === TRUE)
+            {
+                $email = filter_var($this->input->post('email'), FILTER_SANITIZE_EMAIL);
+                $username = filter_var($this->input->post('username'), FILTER_SANITIZE_STRING);
+                $fullname = filter_var($this->input->post('fullname'), FILTER_SANITIZE_STRING);
+                $password = $this->input->post('password');
+                $this->load->model('users_model');
+                $result = $this->users_model->register($email, $username, $password, $fullname);
+                if($result === TRUE)
+                {
+                    $authData = [
+                        'is_logged' => TRUE,
+                        'username'  => $username
+                    ];
+                    $this->session->set_userdata($authData);
+                    redirect(BASE_URL);
+                }
+                else{
+                    $this->session->set_flashdata('REGISTER_FAIL', $result);
+                }
+
+
+            }
+
+        }
+
+        $this->load->view(CURRENT_TEMPLATE.'/register');
     }
 }
