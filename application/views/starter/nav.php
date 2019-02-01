@@ -34,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <a class="nav-link" href="/admin">Admin panel</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="posts/add">Add new review</a>
+                    <a class="nav-link" href="reviews/add">Add new review</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">Logout</a>

@@ -16,7 +16,11 @@ require_template_part('header' ); ?>
 
                 <h3>Adding new review</h3>
 
-                <?php echo form_open('posts/add'); ?>
+                <?php $review_error = $this->session->flashdata('REVIEW_ADDING_FAIL'); if(!empty($review_error)): ?>
+                <div class="alert alert-danger" role="alert"><?php echo $review_error  ?></div>
+                <?php endif; ?>
+
+                <?php echo form_open('reviews/add'); ?>
 
 
                 <div class="form-group">
@@ -61,16 +65,16 @@ require_template_part('header' ); ?>
 
                 <div class="form-group">
 
-                    <?php echo form_error('fullname', "<div class=\"alert alert-danger\" role=\"alert\">", "</div>"); ?>
+                    <?php echo form_error('fullreview', "<div class=\"alert alert-danger\" role=\"alert\">", "</div>"); ?>
 
                     <?php
 
                     $fullreview_data = array(
-                        'name'          => 'fullname',
+                        'name'          => 'fullreview',
                         'id'            => 'editor-container',
                         'type'          => 'text',
                         'placeholder'   => 'Full Review',
-                        'value'         => set_value('fullname'),
+                        'value'         => set_value('fullreview'),
                         'class'         => 'form-control',
                         'maxlength'     => '20'
                     );

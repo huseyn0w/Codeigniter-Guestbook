@@ -10,6 +10,13 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+function print_arr($array)
+{
+    echo '<pre>';
+    print_r($array);
+    echo '</pre>';
+}
+
 function asset_url()
 {
     return base_url().'/assets/'.CURRENT_TEMPLATE;

@@ -8,6 +8,40 @@
 
 class Users_model extends CI_Model
 {
+
+    public function get_username_by_id($id)
+    {
+        if(!isset($id) || !is_logged_in()) return false;
+
+        $this->db->where('id', $id);
+        $query = $this->db->get('users');
+        if($query->num_rows() === 1) {
+
+            $row = $query->row();
+
+            $username = $row->username;
+            return $username;
+
+        }
+
+    }
+    public function get_current_user_id()
+    {
+        if(!is_logged_in()) return false;
+        $username = $this->session->userdata('username');
+        $this->db->where('username', $username);
+        $query = $this->db->get('users');
+        if($query->num_rows() === 1) {
+
+            $row = $query->row();
+
+            $current_user_id = $row->id;
+            return $current_user_id;
+
+        }
+        return false;
+    }
+
     public function auth($username, $password)
     {
         $this->db->where('username', $username);
@@ -29,6 +63,7 @@ class Users_model extends CI_Model
         if(is_string($userExist)) return $userExist;
 
         $user_data = [
+
             'email'    => $email,
             'username' => $username,
             'password' => password_hash($password, PASSWORD_BCRYPT),

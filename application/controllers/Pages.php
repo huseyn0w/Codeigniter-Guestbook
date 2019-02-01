@@ -28,7 +28,22 @@ class Pages extends CI_Controller {
 
     public function index()
     {
-        $this->load->view(CURRENT_TEMPLATE.'/index');
+
+        $this->load->model('reviews_model');
+        $reviews = $this->reviews_model->show_all_reviews();
+        $this->load->model('users_model');
+
+        foreach ($reviews as $key => $review){
+            $author_id = $reviews[$key]->author_id;
+            $reviews[$key]->author_name = $this->users_model->get_username_by_id($author_id);
+
+            //$reviews[$key] = (array) $reviews[$key];
+        }
+
+        $data['reviews'] = $reviews;
+
+
+        $this->load->view(CURRENT_TEMPLATE.'/index', $data);
     }
 
     public function admin()
