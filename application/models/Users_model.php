@@ -9,9 +9,27 @@
 class Users_model extends CI_Model
 {
 
+    public function get_user_status($username)
+    {
+
+        if(!isset($username)) return false;
+
+        $this->db->where('username', $username);
+        $this->db->select('role');
+        $query = $this->db->get('users');
+        if($query->num_rows() === 1) {
+
+            $row = $query->row();
+
+            $status = $row->role;
+            return (int) $status;
+
+        }
+    }
+
     public function get_username_by_id($id)
     {
-        if(!isset($id) || !is_logged_in()) return false;
+        if(!isset($id)) return false;
 
         $this->db->where('id', $id);
         $query = $this->db->get('users');

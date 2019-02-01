@@ -85,4 +85,4 @@ defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 defined('BASE_URL')            OR define('BASE_URL', "http://guestbook/"); // defines website base url
 defined('CURRENT_TEMPLATE')    OR define('CURRENT_TEMPLATE', 'starter'); // current template name
-defined('TEMPLATE_URL')        OR define('TEMPLATE_URL', BASE_URL.'application/views/'.CURRENT_TEMPLATE); // current route to template
+defined('TEMPLATE_URL')        OR define('TEMPLATE_URL', BASE_URL.'application\views\\'.CURRENT_TEMPLATE); // current route to template

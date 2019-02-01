@@ -42,3 +42,16 @@ function is_logged_in()
 
     return false;
 }
+
+function get_current_status(){
+    $status = FALSE;
+    if( isset($_SESSION['status']))
+    {
+        $status = $_SESSION['status'];
+
+    }
+    if(!empty($status)) return $status;
+
+
+    return false;
+}

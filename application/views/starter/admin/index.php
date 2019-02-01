@@ -1,5 +1,5 @@
 <?php
-if(!is_logged_in()){
+if(!is_logged_in() || get_current_status() !== 7){
   redirect(BASE_URL);
 }
 defined('BASEPATH') OR exit('No direct script access allowed');

@@ -41,11 +41,15 @@ class Users extends CI_Controller {
                 $password = $this->input->post('password');
                 $this->load->model('users_model');
                 $result = $this->users_model->auth($username, $password);
+
                 if($result === TRUE)
                 {
+                    $current_status = $this->users_model->get_user_status($username);
+
                     $authData = [
                         'is_logged' => TRUE,
-                        'username'  => $username
+                        'username'  => $username,
+                        'status'    => $current_status
                     ];
                     $this->session->set_userdata($authData);
                 }
@@ -101,8 +105,9 @@ class Users extends CI_Controller {
                 if($result === TRUE)
                 {
                     $authData = [
-                        'is_logged' => TRUE,
-                        'username'  => $username
+                        'is_logged'   => TRUE,
+                        'user_status' => 0,
+                        'username'    => $username
                     ];
                     $this->session->set_userdata($authData);
                     redirect(BASE_URL);

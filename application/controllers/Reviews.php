@@ -10,6 +10,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Reviews extends CI_Controller {
 
+    public function show($id)
+    {
+        if(!isset($id)) redirect(BASE_URL);
+
+        $this->load->model('reviews_model');
+
+        $full_review = $this->reviews_model->show($id);
+
+        $author_id = $full_review[0]->author_id;
+
+        $this->load->model('users_model');
+        $full_review[0]->author_name = $this->users_model->get_username_by_id($author_id);
+
+
+        $data['review'] = $full_review[0];
+
+        $this->load->view(CURRENT_TEMPLATE.'/full_review', $data);
+    }
+
     public function add()
     {
         if(!is_logged_in()) redirect(BASE_URL);
@@ -37,8 +56,9 @@ class Reviews extends CI_Controller {
 
                 $this->load->model('users_model');
                 $current_user_id = $this->users_model->get_current_user_id();
+                $current_status = $this->users_model->get_user_status();
                 $this->load->model('reviews_model');
-                $result = $this->reviews_model->add($title, $excerpt, $clean_review, $current_user_id);
+                $result = $this->reviews_model->add($title, $excerpt, $clean_review, $current_user_id, $current_status);
                 if($result === TRUE)
                 {
                     redirect(BASE_URL);
@@ -51,7 +71,7 @@ class Reviews extends CI_Controller {
 
             }
         }
-        $this->load->view(CURRENT_TEMPLATE.'/new_post');
+        $this->load->view(CURRENT_TEMPLATE.'/new_review');
     }
 
 }

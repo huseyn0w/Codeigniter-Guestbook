@@ -8,6 +8,20 @@
 
 class Reviews_model extends CI_Model{
 
+    public function show($id)
+    {
+        if(!isset($id)) return false;
+
+        $this->db->where('id', (int) $id);
+        $this->db->select('header, full_text, created_date, author_id');
+        $query = $this->db->get('reviews');
+
+        $data = $query->result();
+
+        return $data;
+
+    }
+
     public function show_all_reviews()
     {
 
@@ -21,13 +35,23 @@ class Reviews_model extends CI_Model{
 
     }
 
-    public function add($title, $excerpt, $clean_review, $current_user_id)
+    public function add($title, $excerpt, $clean_review, $current_user_id, $user_status)
     {
+        if(!is_logged_in()) return false;
+
+        if($user_status === 7){
+            $approved = 1;
+        }
+        else{
+            $approved = 0;
+        }
+
         $review_data = [
 
             'header'    => $title,
-            'excerpt'  => $excerpt,
-            'author_id'  => $current_user_id,
+            'excerpt'   => $excerpt,
+            'author_id' => $current_user_id,
+            'approved'  => $approved,
             'full_text' => $clean_review
 
         ];

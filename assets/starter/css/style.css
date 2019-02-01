@@ -21,3 +21,7 @@ body.register{
     background-color: transparent !important;
     border-color: transparent !important;
 }
+
+.review-content{
+    margin-bottom: 30px;
+}
