@@ -114,6 +114,8 @@ if(is_logged_in()) redirect(BASE_URL);
             ?>
         </div>
 
+        <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
+
         <div class="form-group">
             <?php
 
@@ -127,6 +129,7 @@ if(is_logged_in()) redirect(BASE_URL);
                 echo form_close();
             ?>
         </div>
+
     </div>
 </section>
 

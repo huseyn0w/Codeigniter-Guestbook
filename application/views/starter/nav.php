@@ -31,7 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <?php endif; ?>
             <?php if(is_logged_in()): ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="profile">Profile</a>
+                    <a class="nav-link" href="myprofile">Profile</a>
                 </li>
             <?php if(get_current_status() === 7): ?>
                 <li class="nav-item">
@@ -39,7 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </li>
             <?php endif; ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="posts/add">Add new review</a>
+                    <a class="nav-link" href="reviews/add">Add new review</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">Logout</a>

@@ -83,8 +83,9 @@ class Users extends CI_Controller {
     public function register()
     {
         $registerButton = $this->input->post('try_to_register');
+        $recaptcha_response = $this->input->post('recaptcha_response');
 
-        if(isset($registerButton))
+        if(isset($registerButton) && isset($recaptcha_response))
         {
 
             $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
@@ -93,8 +94,16 @@ class Users extends CI_Controller {
             $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
             $this->form_validation->set_rules('password_confirm', 'Password Confirm', 'required|min_length[6]|matches[password]');
 
+            $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
+            $recaptcha_secret = RECAPTCHA_SECRET_KEY;
 
-            if ($this->form_validation->run() === TRUE)
+
+            $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
+            $recaptcha = json_decode($recaptcha);
+
+
+
+            if ($this->form_validation->run() === TRUE && $recaptcha->score >= 0.5)
             {
                 $email = filter_var($this->input->post('email'), FILTER_SANITIZE_EMAIL);
                 $username = filter_var($this->input->post('username'), FILTER_SANITIZE_STRING);

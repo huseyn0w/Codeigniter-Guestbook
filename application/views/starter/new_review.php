@@ -83,6 +83,8 @@ require_template_part('header' ); ?>
                     ?>
                 </div>
 
+                <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
+
                 <div class="form-group">
                     <?php
 

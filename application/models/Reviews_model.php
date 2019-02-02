@@ -10,7 +10,7 @@ class Reviews_model extends CI_Model{
 
     public function show($id)
     {
-        if(!isset($id)) return false;
+        if(!isset($id) || !is_int($id)) return false;
 
         $this->db->where('id', (int) $id);
         $this->db->select('header, full_text, created_date, author_id');
@@ -27,6 +27,7 @@ class Reviews_model extends CI_Model{
 
         $this->db->where('approved', '1');
         $this->db->select('id, header, excerpt, created_date, author_id');
+        $this->db->order_by('created_date', 'desc');
         $query = $this->db->get('reviews');
 
         $data = $query->result();

@@ -33,9 +33,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <link href="<?php echo asset_url() ?>/css/style.css" rel="stylesheet">
 
+
 </head>
 
 <body class="<?php echo uri_string() ?>">
+
 
 <?php require_template_part('nav') ?>
 

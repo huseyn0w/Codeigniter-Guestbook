@@ -43,6 +43,19 @@ function is_logged_in()
     return false;
 }
 
+function get_current_username(){
+    $username = FALSE;
+    if( isset($_SESSION['username']))
+    {
+        $username = $_SESSION['username'];
+
+    }
+    if(!empty($username)) return $username;
+
+
+    return false;
+}
+
 function get_current_status(){
     $status = FALSE;
     if( isset($_SESSION['status']))
