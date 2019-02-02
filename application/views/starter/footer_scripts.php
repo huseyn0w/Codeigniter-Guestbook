@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
 
 
-<?php if(uri_string() === "register" || uri_string() === 'reviews/add'): ?>
+<?php if(uri_string() === "register" || uri_string() === 'reviews/add' || uri_string() === 'myprofile/edit'): ?>
 
 <script src="https://www.google.com/recaptcha/api.js?render=<?php echo RECAPTCHA_PUBLIC_KEY ?>"></script>
 

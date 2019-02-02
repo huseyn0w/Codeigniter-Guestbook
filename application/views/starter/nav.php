@@ -26,23 +26,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <a class="nav-link" data-toggle="modal" data-target="#loginModal" href="#">Log in</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/register">Registration</a>
+                    <a class="nav-link" href="<?php echo BASE_URL ?>register">Registration</a>
                 </li>
             <?php endif; ?>
             <?php if(is_logged_in()): ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="myprofile">Profile</a>
+                    <a class="nav-link" href="<?php echo BASE_URL ?>myprofile">Profile</a>
                 </li>
             <?php if(get_current_status() === 7): ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin">Admin panel</a>
+                    <a class="nav-link" href="<?php echo BASE_URL ?>admin">Admin panel</a>
                 </li>
             <?php endif; ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="reviews/add">Add new review</a>
+                    <a class="nav-link" href="<?php echo BASE_URL ?>reviews/add">Add new review</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/logout">Logout</a>
+                    <a class="nav-link" href="<?php echo BASE_URL ?>logout">Logout</a>
                 </li>
             <?php endif; ?>
             </ul>

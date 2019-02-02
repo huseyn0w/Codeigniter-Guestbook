@@ -24,6 +24,96 @@ class Users extends CI_Controller {
      * map to /index.php/welcome/<method_name>
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
+
+    public function update_profile()
+    {
+
+
+        $update_profile = $this->input->post('save_changes');
+        $recaptcha_response = $this->input->post('recaptcha_response');
+
+
+        if(isset($update_profile) && isset($recaptcha_response))
+        {
+            $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+            $this->form_validation->set_rules('username', 'Username', 'required');
+            $this->form_validation->set_rules('fullname', 'Fullname', 'required');
+
+            $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
+            $recaptcha_secret = RECAPTCHA_SECRET_KEY;
+
+
+            $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
+            $recaptcha = json_decode($recaptcha);
+
+            if ($this->form_validation->run() === TRUE && $recaptcha->score >= 0.5)
+            {
+                $username = filter_var($this->input->post('username'), FILTER_SANITIZE_STRING);
+                $email = filter_var($this->input->post('email'), FILTER_SANITIZE_EMAIL);
+                $fullname = filter_var($this->input->post('fullname'), FILTER_SANITIZE_STRING);
+                $password = $this->input->post('password');
+
+                $this->load->model('users_model');
+
+                $current_username = get_current_username();
+
+                $password_verified = $this->users_model->check_current_password($current_username, $password);
+
+                if($password_verified !== true)
+                {
+                    $this->session->set_flashdata('PASSWORD_FAIL', 'You entered wrong password');
+                    redirect(BASE_URL.'myprofile/edit');
+                }
+
+                $username_and_login_exist = $this->users_model->username_and_login_exit($username, $email);
+
+
+                if($username_and_login_exist !== true)
+                {
+                    print_arr($username_and_login_exist); exit;
+                    $this->session->set_flashdata('USERNAME_LOGIN_FAIL', $username_and_login_exist);
+                    redirect(BASE_URL.'myprofile/edit');
+                }
+
+
+                $config['upload_path']          = './uploads/';
+                $config['allowed_types']        = 'gif|jpg|png';
+                $config['max_size']             = 100;
+                $config['max_width']            = 1024;
+                $config['max_height']           = 768;
+
+                $this->load->library('upload', $config);
+
+                if ( ! $this->upload->do_upload('avatar'))
+                {
+                    $data = array('error' => $this->upload->display_errors());
+
+                }
+                else
+                {
+                    $update_user_data = $this->users_model->update_user_data($username, $email, $fullname);
+
+                    if($update_user_data === TRUE)
+                    {
+                        $data = array('upload_data' => $this->upload->data());
+                    }
+
+
+                }
+
+
+                $this->load->view(CURRENT_TEMPLATE.'/myprofile', $data);
+
+
+            }
+        }
+        else{
+            redirect(BASE_URL);
+        }
+
+
+    }
+
     public function login()
     {
         $loginCheck = $this->input->post('try_to_login');
@@ -132,4 +222,5 @@ class Users extends CI_Controller {
 
         $this->load->view(CURRENT_TEMPLATE.'/register');
     }
+
 }

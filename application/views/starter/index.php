@@ -1,4 +1,12 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Elman
+ * Date: 26.01.2019
+ * Time: 18:15
+ */
+
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 $auth_error = $this->session->flashdata('LOGIN_FAIL');
 

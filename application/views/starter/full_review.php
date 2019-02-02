@@ -5,9 +5,9 @@
  * Date: 01.02.2019
  * Time: 22:44
  */
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 require_template_part('header') ?>
-
 
 
 <div class="container">

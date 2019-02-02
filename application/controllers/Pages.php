@@ -26,6 +26,20 @@ class Pages extends CI_Controller {
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
 
+    public function profile()
+    {
+        if(!is_logged_in()) redirect(BASE_URL);
+
+        $username = get_current_username();
+        $this->load->model('users_model');
+        $user_info = $this->users_model->get_user_info($username);
+        $data['user_info'] = array();
+        if(!empty($user_info)){
+            $data['user_info'] = $user_info;
+        }
+        $this->load->view(CURRENT_TEMPLATE.'/myprofile', $data);
+    }
+
     public function index()
     {
 
@@ -38,15 +52,10 @@ class Pages extends CI_Controller {
             foreach ($reviews as $key => $review){
                 $author_id = $reviews[$key]->author_id;
                 $reviews[$key]->author_name = $this->users_model->get_username_by_id($author_id);
-
-                //$reviews[$key] = (array) $reviews[$key];
             }
         }
 
         $data['reviews'] = $reviews;
-
-
-
 
         $this->load->view(CURRENT_TEMPLATE.'/index', $data);
     }

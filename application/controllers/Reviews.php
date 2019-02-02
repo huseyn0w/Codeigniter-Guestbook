@@ -20,6 +20,8 @@ class Reviews extends CI_Controller {
 
         $full_review = $this->reviews_model->show($id);
 
+        if(empty($full_review)) show_404();
+
         $author_id = $full_review[0]->author_id;
 
         $this->load->model('users_model');
