@@ -25,3 +25,14 @@ body.register{
 .review-content{
     margin-bottom: 30px;
 }
+
+.avatar{
+    max-width: 100%;
+    width: auto;
+    max-height: 150px;
+    height: auto;
+}
+
+.profile-group{
+    margin-bottom: 30px;
+}

@@ -25,6 +25,20 @@ class Users extends CI_Controller {
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
 
+    public function edit_profile()
+    {
+        if(!is_logged_in()) redirect(BASE_URL);
+
+        $username = get_current_username();
+        $this->load->model('users_model');
+        $user_info = $this->users_model->get_user_info($username);
+        $data['user_info'] = array();
+        if(!empty($user_info)){
+            $data['user_info'] = $user_info;
+        }
+        $this->load->view(CURRENT_TEMPLATE.'/editprofile', $data);
+    }
+
     public function update_profile()
     {
 
@@ -53,6 +67,10 @@ class Users extends CI_Controller {
                 $fullname = filter_var($this->input->post('fullname'), FILTER_SANITIZE_STRING);
                 $password = $this->input->post('password');
 
+                $avatar = $_FILES['avatar']['name'];
+
+                if(empty($avatar)) $avatar = null;
+
                 $this->load->model('users_model');
 
                 $current_username = get_current_username();
@@ -70,41 +88,60 @@ class Users extends CI_Controller {
 
                 if($username_and_login_exist !== true)
                 {
-                    print_arr($username_and_login_exist); exit;
                     $this->session->set_flashdata('USERNAME_LOGIN_FAIL', $username_and_login_exist);
                     redirect(BASE_URL.'myprofile/edit');
                 }
 
-
-                $config['upload_path']          = './uploads/';
-                $config['allowed_types']        = 'gif|jpg|png';
-                $config['max_size']             = 100;
-                $config['max_width']            = 1024;
-                $config['max_height']           = 768;
-
-                $this->load->library('upload', $config);
-
-                if ( ! $this->upload->do_upload('avatar'))
+                if(!is_null($avatar))
                 {
-                    $data = array('error' => $this->upload->display_errors());
+                    $config['upload_path']          = 'uploads/';
+                    $config['allowed_types']        = 'gif|jpg|png';
+                    $config['max_size']             = 2048;
+                    $config['max_width']            = 1024;
+                    $config['max_height']           = 768;
 
+                    $this->load->library('upload', $config);
+
+                    if ( ! $this->upload->do_upload('avatar'))
+                    {
+                        $this->session->set_flashdata('AVATAR_ERROR', $this->upload->display_errors());
+
+                        redirect(BASE_URL.'myprofile/edit');
+
+                    }
+                    else
+                    {
+                        $avatar_data = $this->upload->data();
+
+                        $avatar_url = BASE_URL.'uploads/'.$avatar_data['file_name'];
+
+                        $update_user_data = $this->users_model->update_user_data($username, $email, $fullname, $avatar_url);
+
+                        if($update_user_data === TRUE)
+                        {
+                            $this->session->username = $username;
+                            $this->session->email = $email;
+                            $this->session->set_flashdata('UPDATE_SUCCESS', 'Your profile data has been successfully updated');
+                        }
+                        redirect(BASE_URL.'myprofile');
+
+                    }
                 }
-                else
-                {
+                else{
                     $update_user_data = $this->users_model->update_user_data($username, $email, $fullname);
 
                     if($update_user_data === TRUE)
                     {
-                        $data = array('upload_data' => $this->upload->data());
+                        $this->session->username = $username;
+                        $this->session->email = $email;
+                        $this->session->set_flashdata('UPDATE_SUCCESS', 'Your profile data has been successfully updated');
                     }
-
-
+                    redirect(BASE_URL.'myprofile');
                 }
 
-
-                $this->load->view(CURRENT_TEMPLATE.'/myprofile', $data);
-
-
+            }
+            else{
+                redirect(BASE_URL.'myprofile');
             }
         }
         else{

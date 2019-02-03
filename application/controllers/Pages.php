@@ -26,7 +26,7 @@ class Pages extends CI_Controller {
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
 
-    public function profile()
+    public function show_profile_info()
     {
         if(!is_logged_in()) redirect(BASE_URL);
 

@@ -9,7 +9,7 @@
 class Users_model extends CI_Model
 {
 
-    public function update_user_data($username, $email, $fullname, $avatar_url)
+    public function update_user_data($username, $email, $fullname, $avatar_url = null)
     {
         if(!is_logged_in()) return false;
 
@@ -35,9 +35,12 @@ class Users_model extends CI_Model
         $updated_data = [
             'username'   => $username,
             'email'      => $email,
-            'fullname'   => $fullname,
-            'avatar_url' => $avatar_url,
+            'fullname'   => $fullname
         ];
+
+        if(!is_null($avatar_url)){
+            $updated_data['avatar_url'] = $avatar_url;
+        }
 
         $this->db->where('id', $id);
         $update_query = $this->db->update('users', $updated_data);

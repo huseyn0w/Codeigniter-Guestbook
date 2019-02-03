@@ -51,9 +51,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'pages';
 $route['admin'] = 'pages/admin';
-$route['profile/update'] = 'users/update_profile';
-$route['myprofile/edit'] = 'pages/profile/edit';
-$route['myprofile'] = 'pages/profile';
+$route['myprofile/update'] = 'users/update_profile';
+$route['myprofile/edit'] = 'users/edit_profile';
+$route['myprofile'] = 'pages/show_profile_info';
 $route['404_override'] = '';
 $route['logout'] = 'users/logout';
 $route['register'] = 'users/register';
