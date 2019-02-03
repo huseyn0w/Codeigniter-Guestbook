@@ -8,6 +8,19 @@
 
 class Reviews_model extends CI_Model{
 
+    public function get_total_page_count()
+    {
+        $this->db->where('approved', '1');
+        $this->db->select('count(*) as posts_count');
+        $query = $this->db->get('reviews');
+
+        $result = $query->result();
+
+        $reviews_total_count = $result[0]->posts_count;
+
+        return $reviews_total_count;
+    }
+
     public function show($id)
     {
         if(!isset($id) || !is_int($id)) return false;
@@ -22,15 +35,22 @@ class Reviews_model extends CI_Model{
 
     }
 
-    public function show_all_reviews()
+    public function show_reviews($posts_start_count = 1)
     {
+        if($posts_start_count === 1){
+            $posts_start_count = 0;
+        }
 
-        $this->db->where('approved', '1');
+
         $this->db->select('id, header, excerpt, created_date, author_id');
+        $this->db->where('approved', '1');
         $this->db->order_by('created_date', 'desc');
+        $this->db->limit(POSTS_PER_PAGE, $posts_start_count);
         $query = $this->db->get('reviews');
 
+
         $data = $query->result();
+
 
         return $data;
 
@@ -63,9 +83,5 @@ class Reviews_model extends CI_Model{
         return false;
     }
 
-    public function show_reviews()
-    {
-
-    }
 
 }

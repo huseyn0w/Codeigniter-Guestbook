@@ -26,25 +26,49 @@ class Pages extends CI_Controller {
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
 
-    public function show_profile_info()
+    public function show_profile_info($username = null)
     {
-        if(!is_logged_in()) redirect(BASE_URL);
-
-        $username = get_current_username();
+        if(is_null($username)) $username = get_current_username();
         $this->load->model('users_model');
         $user_info = $this->users_model->get_user_info($username);
-        $data['user_info'] = array();
+
+        if(!$user_info) show_404();
+
+        $data['user_info'] = [];
         if(!empty($user_info)){
             $data['user_info'] = $user_info;
         }
+        $data['searched_username'] = $username;
         $this->load->view(CURRENT_TEMPLATE.'/myprofile', $data);
     }
 
-    public function index()
+    public function index($current_page = 1)
     {
+        $this->load->library('pagination');
+
+
+
 
         $this->load->model('reviews_model');
-        $reviews = $this->reviews_model->show_all_reviews();
+
+
+
+        $reviews = $this->reviews_model->show_reviews($current_page);
+
+        $config['total_rows'] = $this->reviews_model->get_total_page_count();
+        $config['base_url'] = BASE_URL.'more/';
+        $config['first_url'] = BASE_URL;
+        $config['per_page'] = POSTS_PER_PAGE;
+        $config['display_pages'] = FALSE;
+        $config['attributes'] = array('class' => 'btn btn-primary custom-pagination');
+        $config['next_link'] = "Next Page";
+        $config['prev_link'] = "Prev Page";
+
+        $this->pagination->initialize($config);
+
+        $data['links'] = $this->pagination->create_links();
+
+
         $this->load->model('users_model');
 
         if(!empty($reviews))

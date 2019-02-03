@@ -25,14 +25,17 @@ class Users extends CI_Controller {
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
 
-    public function edit_profile()
+    public function show_profile_info()
     {
         if(!is_logged_in()) redirect(BASE_URL);
 
         $username = get_current_username();
         $this->load->model('users_model');
         $user_info = $this->users_model->get_user_info($username);
-        $data['user_info'] = array();
+
+        if(!$user_info) show_404();
+
+        $data['user_info'] = [];
         if(!empty($user_info)){
             $data['user_info'] = $user_info;
         }
@@ -41,6 +44,7 @@ class Users extends CI_Controller {
 
     public function update_profile()
     {
+        if(!is_logged_in()) redirect(BASE_URL);
 
 
         $update_profile = $this->input->post('save_changes');

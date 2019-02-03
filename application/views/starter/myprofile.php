@@ -6,7 +6,6 @@
  * Time: 15:56
  */
 
-if(!is_logged_in()) redirect(BASE_URL);
 
 require_template_part('header' ); ?>
 
@@ -19,18 +18,18 @@ require_template_part('header' ); ?>
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto text-center">
 
-            <?php
+            <?php if(is_logged_in()):
                 $update_success = $this->session->flashdata('UPDATE_SUCCESS');
 
                 if(!empty($update_success)): ?>
                 <div class="alert alert-success" role="alert"><?php echo $update_success  ?></div>
-            <?php endif; ?>
+            <?php endif; endif; ?>
 
 
             <div class="profile-group">
-                <h4>Your avatar:</h4>
+                <h4>Profile avatar:</h4>
                 <?php if(empty($user_info->avatar_url)): ?>
-                    <p>You din't upload your avatar yet. You can do it now.</p>
+                    <img src="<?php echo asset_url() ?>/img/noavatar.png" class="avatar" alt="No avatar">
                 <?php else: ?>
                     <img src="<?php echo $user_info->avatar_url ?>" class="avatar" alt="Avatar of <?php echo $user_info->username ?>">
                 <?php endif; ?>
@@ -48,7 +47,11 @@ require_template_part('header' ); ?>
                 <p><?php echo $user_info->email ?></p>
             </div>
 
-            <a href="<?php echo BASE_URL ?>myprofile/edit" class="btn btn-primary">Edit my profile</a>
+            <?php if($searched_username === get_current_username()): ?>
+
+                <a href="<?php echo BASE_URL ?>myprofile/edit" class="btn btn-primary">Edit my profile</a>
+
+            <?php endif; ?>
 
         </div>
     </div>

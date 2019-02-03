@@ -36,3 +36,7 @@ body.register{
 .profile-group{
     margin-bottom: 30px;
 }
+
+.custom-pagination{
+    margin: 0 7px;
+}
