@@ -67,7 +67,7 @@ class Users_model extends CI_Model
 
     public function  get_user_info($username)
     {
-        if(!is_logged_in() || !isset($username)) return false;
+        if(!isset($username)) return false;
         $this->db->where('username', $username);
         $this->db->select('username, email, fullname, avatar_url');
         $query = $this->db->get('users');
@@ -104,7 +104,7 @@ class Users_model extends CI_Model
 
     public function get_username_by_id($id)
     {
-        if(!is_logged_in() || !isset($id)) return false;
+        if(!isset($id)) return false;
 
         $this->db->where('id', $id);
         $query = $this->db->get('users');

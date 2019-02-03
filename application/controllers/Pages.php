@@ -28,6 +28,7 @@ class Pages extends CI_Controller {
 
     public function show_profile_info($username = null)
     {
+
         if(is_null($username)) $username = get_current_username();
         $this->load->model('users_model');
         $user_info = $this->users_model->get_user_info($username);
@@ -55,6 +56,7 @@ class Pages extends CI_Controller {
 
         $reviews = $this->reviews_model->show_reviews($current_page);
 
+
         $config['total_rows'] = $this->reviews_model->get_total_page_count();
         $config['base_url'] = BASE_URL.'more/';
         $config['first_url'] = BASE_URL;
@@ -68,7 +70,6 @@ class Pages extends CI_Controller {
 
         $data['links'] = $this->pagination->create_links();
 
-
         $this->load->model('users_model');
 
         if(!empty($reviews))
@@ -78,6 +79,7 @@ class Pages extends CI_Controller {
                 $reviews[$key]->author_name = $this->users_model->get_username_by_id($author_id);
             }
         }
+
 
         $data['reviews'] = $reviews;
 
