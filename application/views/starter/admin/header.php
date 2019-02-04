@@ -34,7 +34,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- Page level plugin CSS-->
     <link href="<?php echo asset_url() ?>/admin/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
-    <!-- Custom styles for this template-->
+    <!-- Main styles for this template-->
     <link href="<?php echo asset_url() ?>/admin/css/sb-admin.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="<?php echo asset_url() ?>/admin/css/style.css" rel="stylesheet">
 
 </head>

@@ -88,6 +88,24 @@ class Pages extends CI_Controller {
 
     public function admin()
     {
-        $this->load->view(CURRENT_TEMPLATE.'/admin/index');
+        $this->load->model('reviews_model');
+
+        $reviews = $this->reviews_model->get_unapproved_reviews();
+
+        $this->load->model('users_model');
+
+        $data['reviews'] = [];
+
+        if( !empty($reviews) && $reviews !== false)
+        {
+            foreach($reviews as $review)
+            {
+                $review->author_username = $this->users_model->get_username_by_id($review->author_id);
+            }
+            $data['reviews'] = $reviews;
+        }
+
+
+        $this->load->view(CURRENT_TEMPLATE.'/admin/index', $data);
     }
 }

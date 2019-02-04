@@ -8,6 +8,18 @@
 
 class Reviews_model extends CI_Model{
 
+    public function get_unapproved_reviews()
+    {
+        if(!is_logged_in()) return false;
+
+        $this->db->select('id, header, excerpt, created_date, author_id');
+        $this->db->where('approved', '0');
+        $query = $this->db->get('reviews');
+        $data = $query->result();
+
+        return $data;
+    }
+
     public function get_total_page_count()
     {
         $this->db->where('approved', '1');

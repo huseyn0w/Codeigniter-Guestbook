@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <footer class="sticky-footer">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright © Your Website 2018</span>
+            <span>Copyright © CI Guestbook <?php echo date('Y') ?> By <a href="https://ehuseynov.com">huseyn0w</a>.</span>
         </div>
     </div>
 </footer>

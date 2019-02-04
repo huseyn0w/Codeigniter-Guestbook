@@ -87,7 +87,8 @@ class Users_model extends CI_Model
     public function get_user_status($username)
     {
 
-        if(!is_logged_in() || !isset($username)) return false;
+
+        if(!isset($username)) return false;
 
         $this->db->where('username', $username);
         $this->db->select('role');
