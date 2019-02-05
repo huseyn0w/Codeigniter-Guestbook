@@ -1,3 +1,15 @@
 .table td, .table th{
     vertical-align: middle;
 }
+
+.flash-alerts{
+    position: fixed;
+    max-width: 600px;
+    top: 20px;
+    right: 30px;
+}
+
+.action-ok,
+.action-error{
+    display: none;
+}

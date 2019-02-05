@@ -8,6 +8,38 @@
 
 class Reviews_model extends CI_Model{
 
+    public function approve_review($id)
+    {
+        if(!is_logged_in() || !isset($id)) return false;
+
+        $this->db->set('approved', 1);
+        $this->db->where('id', $id);
+        $this->db->update('reviews');
+        $result = $this->db->affected_rows();
+
+        if($result === 1)
+        {
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    public function delete_review($id)
+    {
+        if(!is_logged_in() || !isset($id)) return false;
+
+        $this->db->where('id', $id);
+        $this->db->delete('reviews');
+        $result = $this->db->affected_rows();
+
+        if($result === 1)
+        {
+            return TRUE;
+        }
+        return FALSE;
+
+    }
+
     public function get_unapproved_reviews()
     {
         if(!is_logged_in()) return false;

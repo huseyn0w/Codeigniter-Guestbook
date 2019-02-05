@@ -10,6 +10,47 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Reviews extends CI_Controller {
 
+    public function ajax_action($id)
+    {
+        if(!is_logged_in() || !$this->input->is_ajax_request()) return false;
+        $id = (int) $id;
+        $postType = $this->input->post('postType');
+
+
+        $return_data = [];
+
+
+        if($id > 0 && $postType === "review")
+        {
+            $this->load->model('reviews_model');
+            $action = $this->input->post('action');
+            if($action === "delete"){
+                $result = $this->reviews_model->delete_review($id);
+            }
+            elseif($action === "approve"){
+                $result = $this->reviews_model->approve_review($id);
+            }
+            if($result === TRUE){
+                $return_data['code'] = "OK";
+                $return_data['message'] = "Done";
+            }
+            else{
+                $return_data['code'] = "OK";
+                $return_data['message'] = "PROBLEM";
+            }
+            echo json_encode($return_data);
+        }
+
+        return;
+    }
+
+
+    public function full($id)
+    {
+        if(!is_logged_in()) redirect(BASE_URL);
+        return $this->show($id);
+    }
+
     public function show($id)
     {
         $id = (int) $id;

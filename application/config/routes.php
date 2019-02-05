@@ -52,6 +52,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'pages';
 $route['admin'] = 'pages/admin';
 $route['more/(:num)'] = 'pages/index/$1';
+$route['full/(:num)'] = 'reviews/full/$1';
+$route['ajax_action/(:num)'] = 'reviews/ajax_action/$1';
 $route['myprofile/update'] = 'users/update_profile';
 $route['myprofile/edit'] = 'users/show_profile_info';
 $route['myprofile'] = 'pages/show_profile_info';

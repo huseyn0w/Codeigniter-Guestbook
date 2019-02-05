@@ -92,6 +92,8 @@ class Pages extends CI_Controller {
 
         $reviews = $this->reviews_model->get_unapproved_reviews();
 
+        $data['count_reviews'] = count($reviews);
+
         $this->load->model('users_model');
 
         $data['reviews'] = [];
@@ -104,6 +106,9 @@ class Pages extends CI_Controller {
             }
             $data['reviews'] = $reviews;
         }
+
+        $data['csrf_token_name'] = $this->security->get_csrf_token_name();
+        $data['csrf_hash'] = $this->security->get_csrf_hash();
 
 
         $this->load->view(CURRENT_TEMPLATE.'/admin/index', $data);

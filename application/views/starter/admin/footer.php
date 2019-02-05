@@ -53,6 +53,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
 </div>
 
+<div class="flash-alerts">
+    <div class="action-ok alert alert-success" role="alert"></div>
+    <div class="action-error alert alert-error" role="alert"></div>
+</div>
+
 <!-- Bootstrap core JavaScript-->
 <script src="<?php echo asset_url() ?>/admin/vendor/jquery/jquery.min.js"></script>
 <script src="<?php echo asset_url() ?>/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -60,19 +65,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!-- Core plugin JavaScript-->
 <script src="<?php echo asset_url() ?>/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-<!-- Page level plugin JavaScript-->
-<script src="<?php echo asset_url() ?>/admin/vendor/chart.js/Chart.min.js"></script>
-<script src="<?php echo asset_url() ?>/admin/vendor/datatables/jquery.dataTables.js"></script>
-<script src="<?php echo asset_url() ?>/admin/vendor/datatables/dataTables.bootstrap4.js"></script>
 
 <!-- Custom scripts for all pages-->
 <script src="<?php echo asset_url() ?>/admin/js/sb-admin.min.js"></script>
 
-<!-- Demo scripts for this page-->
-<script src="<?php echo asset_url() ?>/admin/js/demo/datatables-demo.js"></script>
-<script src="<?php echo asset_url() ?>/admin/js/demo/chart-area-demo.js"></script>
+
+<script>
+    var siteURL = '<?php echo BASE_URL ?>';
+    var tokenHash = '<?php echo $data['csrf_hash'] ?>';
+</script>
+<script src="<?php echo asset_url() ?>/admin/js/admin.js"></script>
 
 </body>
 
 </html>
+
+
 
