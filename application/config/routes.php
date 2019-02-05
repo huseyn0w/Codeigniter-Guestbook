@@ -50,8 +50,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'pages';
-$route['admin'] = 'pages/admin';
 $route['more/(:num)'] = 'pages/index/$1';
+$route['admin/reviews/page/(:num)'] = 'admin/reviews/$1';
 $route['full/(:num)'] = 'reviews/full/$1';
 $route['ajax_action/(:num)'] = 'reviews/ajax_action/$1';
 $route['myprofile/update'] = 'users/update_profile';

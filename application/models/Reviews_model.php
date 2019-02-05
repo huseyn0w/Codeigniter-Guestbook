@@ -8,6 +8,28 @@
 
 class Reviews_model extends CI_Model{
 
+    public function get_all_reviews($posts_start_count = 1)
+    {
+        if(!is_logged_in()) return false;
+
+        if($posts_start_count === 1){
+            $posts_start_count = 0;
+        }
+
+
+        $this->db->select('id, header, created_date, author_id');
+        $this->db->order_by('created_date', 'desc');
+        $this->db->limit(POSTS_PER_PAGE, $posts_start_count);
+        $query = $this->db->get('reviews');
+
+
+        $data = $query->result();
+
+        return $data;
+
+
+    }
+
     public function approve_review($id)
     {
         if(!is_logged_in() || !isset($id)) return false;
@@ -44,7 +66,7 @@ class Reviews_model extends CI_Model{
     {
         if(!is_logged_in()) return false;
 
-        $this->db->select('id, header, excerpt, created_date, author_id');
+        $this->db->select('id, header, created_date, author_id');
         $this->db->where('approved', '0');
         $query = $this->db->get('reviews');
         $data = $query->result();

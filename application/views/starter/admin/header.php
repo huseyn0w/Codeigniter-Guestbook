@@ -5,10 +5,13 @@
  * Date: 27.01.2019
  * Time: 22:27
  */
-if(!is_logged_in()){
+
+
+if(!is_logged_in() || get_current_status() !== 7){
     redirect(BASE_URL);
 }
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 
 ?>
 
@@ -23,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Dashboard</title>
+    <title>Codeigniter GB Admin</title>
 
     <!-- Bootstrap core CSS-->
     <link href="<?php echo asset_url() ?>/admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

@@ -47,12 +47,7 @@ class Pages extends CI_Controller {
     {
         $this->load->library('pagination');
 
-
-
-
         $this->load->model('reviews_model');
-
-
 
         $reviews = $this->reviews_model->show_reviews($current_page);
 
@@ -66,9 +61,7 @@ class Pages extends CI_Controller {
         $config['next_link'] = "Next Page";
         $config['prev_link'] = "Prev Page";
 
-        $this->pagination->initialize($config);
 
-        $data['links'] = $this->pagination->create_links();
 
         $this->load->model('users_model');
 
@@ -78,6 +71,10 @@ class Pages extends CI_Controller {
                 $author_id = $reviews[$key]->author_id;
                 $reviews[$key]->author_name = $this->users_model->get_username_by_id($author_id);
             }
+
+            $this->pagination->initialize($config);
+
+            $data['links'] = $this->pagination->create_links();
         }
 
 
@@ -86,31 +83,4 @@ class Pages extends CI_Controller {
         $this->load->view(CURRENT_TEMPLATE.'/index', $data);
     }
 
-    public function admin()
-    {
-        $this->load->model('reviews_model');
-
-        $reviews = $this->reviews_model->get_unapproved_reviews();
-
-        $data['count_reviews'] = count($reviews);
-
-        $this->load->model('users_model');
-
-        $data['reviews'] = [];
-
-        if( !empty($reviews) && $reviews !== false)
-        {
-            foreach($reviews as $review)
-            {
-                $review->author_username = $this->users_model->get_username_by_id($review->author_id);
-            }
-            $data['reviews'] = $reviews;
-        }
-
-        $data['csrf_token_name'] = $this->security->get_csrf_token_name();
-        $data['csrf_hash'] = $this->security->get_csrf_hash();
-
-
-        $this->load->view(CURRENT_TEMPLATE.'/admin/index', $data);
-    }
 }

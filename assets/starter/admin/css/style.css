@@ -13,3 +13,7 @@
 .action-error{
     display: none;
 }
+
+.custom-admin-pagination{
+    margin:0 7px;
+}

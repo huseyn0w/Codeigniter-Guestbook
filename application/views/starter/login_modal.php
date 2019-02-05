@@ -74,7 +74,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     echo form_submit($submit_data);
                     echo form_close();
                 ?>
-                <a href="/forgot" type="button" class="btn btn-secondary">Forgot password?</a>
             </div>
         </div>
     </div>
