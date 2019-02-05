@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </a>
                     </li>
                 </ul>
-                <p class="copyright text-muted">Copyright &copy; Your Website 2018</p>
+                <p class="copyright text-muted">Created by <a href="https://linkedin.com/in/huseyn0w" target="_blank">Elman Hüseynov</a></p>
             </div>
         </div>
     </div>

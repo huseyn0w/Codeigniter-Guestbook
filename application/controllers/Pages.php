@@ -45,6 +45,7 @@ class Pages extends CI_Controller {
 
     public function index($current_page = 1)
     {
+
         $this->load->library('pagination');
 
         $this->load->model('reviews_model');

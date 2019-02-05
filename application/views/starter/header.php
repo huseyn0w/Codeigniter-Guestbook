@@ -6,6 +6,7 @@
  * Time: 18:15
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Clean Blog - Start Bootstrap Theme</title>
+    <title>CI Guestbook</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?php echo asset_url() ?>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -49,8 +50,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="site-heading">
-                    <h1>Clean Blog</h1>
-                    <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                    <h1>CI Guestbook</h1>
+                    <span class="subheading">Simple guestbook created on Codeigniter framework with love!</span>
                 </div>
             </div>
         </div>

@@ -70,11 +70,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!-- Custom scripts for all pages-->
 <script src="<?php echo asset_url() ?>/admin/js/sb-admin.min.js"></script>
 
+<?php if(uri_string() === 'admin' || uri_string() === 'admin/reviews/'): ?>
 
 <script>
     var siteURL = '<?php echo BASE_URL ?>';
     var tokenHash = '<?php echo $data['csrf_hash'] ?>';
 </script>
+
+<?php endif; ?>
+
 <script src="<?php echo asset_url() ?>/admin/js/admin.js"></script>
 
 </body>

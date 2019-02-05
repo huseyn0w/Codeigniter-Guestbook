@@ -451,7 +451,7 @@ $config['global_xss_filtering'] = FALSE;
 $config['csrf_protection'] = TRUE;
 $config['csrf_token_name'] = 'ci_guestbook_csrf';
 $config['csrf_cookie_name'] = 'csrf_cookie_name';
-$config['csrf_expire'] = 7200;
+$config['csrf_expire'] = 3600;
 $config['csrf_regenerate'] = FALSE;
 $config['csrf_exclude_uris'] = array();
 
@@ -521,3 +521,32 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Site Settings
+|--------------------------------------------------------------------------
+|
+|
+| Here we get a site settings variables from database
+| Example, posts per page, github url, website headline, copyright text
+*/
+
+require_once( BASEPATH .'database/DB.php');
+$db =& DB();
+
+
+$query = $db->get('settings');
+
+$result = $query->result();
+
+$config['database_values'] = [];
+
+foreach( $result as $row)
+{
+    $config['database_values'][] = [$row->name => $row->value];
+}
+

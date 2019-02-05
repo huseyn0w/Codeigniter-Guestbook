@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">Other Pages:</h6>
             <a class="dropdown-item" href="<?php echo base_url() ?>">Go to Homepage</a>
-            <a class="dropdown-item" href="blank.html">General settings</a>
+            <a class="dropdown-item" href="<?php echo BASE_URL?>admin/settings">General settings</a>
             <a class="dropdown-item" href="<?php echo base_url() ?>admin/reviews">All GB reviews</a>
         </div>
     </li>

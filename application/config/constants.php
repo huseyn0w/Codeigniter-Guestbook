@@ -73,6 +73,9 @@ defined('FOPEN_READ_WRITE_CREATE_STRICT')       OR define('FOPEN_READ_WRITE_CREA
 |       http://tldp.org/LDP/abs/html/exitcodes.html
 |
 */
+
+
+
 defined('EXIT_SUCCESS')         OR define('EXIT_SUCCESS', 0); // no errors
 defined('EXIT_ERROR')           OR define('EXIT_ERROR', 1); // generic error
 defined('EXIT_CONFIG')          OR define('EXIT_CONFIG', 3); // configuration error
@@ -88,4 +91,5 @@ defined('CURRENT_TEMPLATE')     OR define('CURRENT_TEMPLATE', 'starter'); // cur
 defined('TEMPLATE_URL')         OR define('TEMPLATE_URL', BASE_URL.'application\views\\'.CURRENT_TEMPLATE); // current route to template
 defined('RECAPTCHA_PUBLIC_KEY') OR define('RECAPTCHA_PUBLIC_KEY', '6Lf4pY4UAAAAAFV0SfQrjCCC5Ttg4PCXsFrwncad'); // Recaptcha public key
 defined('RECAPTCHA_SECRET_KEY') OR define('RECAPTCHA_SECRET_KEY', '6Lf4pY4UAAAAANTpRy9IpqCQMUejpBrIF-4WSQZY'); // Recaptcha secret key
+
 defined('POSTS_PER_PAGE')       OR define('POSTS_PER_PAGE', 5); // no errors
