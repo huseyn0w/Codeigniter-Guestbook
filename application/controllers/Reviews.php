@@ -78,6 +78,10 @@ class Reviews extends CI_Controller {
     {
         if(!is_logged_in()) redirect(BASE_URL);
 
+        $this->load->model('settings_model');
+        $data['settings'] = $this->settings_model->load_settings();
+
+
         $add_new_review = $this->input->post('add_new_review');
         $recaptcha_response = $this->input->post('recaptcha_response');
 
@@ -128,7 +132,7 @@ class Reviews extends CI_Controller {
 
             }
         }
-        $this->load->view(CURRENT_TEMPLATE.'/new_review');
+        $this->load->view(CURRENT_TEMPLATE.'/new_review', $data);
     }
 
 }

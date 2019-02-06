@@ -8,7 +8,9 @@
 
 if(!is_logged_in()) redirect(BASE_URL);
 
-require_template_part('header' ); ?>
+$data['settings'] = $settings;
+
+require_template_part('header', $data ); ?>
 
 
     <?php
@@ -156,4 +158,4 @@ require_template_part('header' ); ?>
 
 
 
-<?php require_template_part('footer') ?>
+<?php require_template_part('footer', $data) ?>

@@ -53,6 +53,7 @@ class Admin extends CI_Controller{
                 $this->form_validation->set_rules('posts_per_page', 'Posts per page', 'required|min_length[1]');
                 $this->form_validation->set_rules('front_copyright', 'Front Copyright', 'required|min_length[6]');
                 $this->form_validation->set_rules('small_headline', 'Small headline', 'required|min_length[6]');
+                $this->form_validation->set_rules('main_title', 'Main title', 'required|min_length[6]');
 
 
                 if ($this->form_validation->run() === TRUE)
@@ -61,6 +62,7 @@ class Admin extends CI_Controller{
                     $github_link = filter_var($this->input->post('github_url'), FILTER_SANITIZE_URL);
                     $posts_per_page = filter_var($this->input->post('posts_per_page'), FILTER_SANITIZE_NUMBER_INT);
                     $small_headline = filter_var($this->input->post('small_headline'), FILTER_SANITIZE_STRING);
+                    $main_title= filter_var($this->input->post('main_title'), FILTER_SANITIZE_STRING);
 
                     require_once(getcwd().'\application\libraries\htmlpurifier\HTMLPurifier.auto.php');
 
@@ -74,7 +76,8 @@ class Admin extends CI_Controller{
                         'github_url'      => $github_link,
                         'posts_per_page'  => $posts_per_page,
                         'small_headline'  => $small_headline,
-                        'front_copyright' => $front_copyright
+                        'front_copyright' => $front_copyright,
+                        'main_title'      => $main_title
                     ];
 
                     $this->load->model('settings_model');

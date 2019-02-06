@@ -92,4 +92,4 @@ defined('TEMPLATE_URL')         OR define('TEMPLATE_URL', BASE_URL.'application\
 defined('RECAPTCHA_PUBLIC_KEY') OR define('RECAPTCHA_PUBLIC_KEY', '6Lf4pY4UAAAAAFV0SfQrjCCC5Ttg4PCXsFrwncad'); // Recaptcha public key
 defined('RECAPTCHA_SECRET_KEY') OR define('RECAPTCHA_SECRET_KEY', '6Lf4pY4UAAAAANTpRy9IpqCQMUejpBrIF-4WSQZY'); // Recaptcha secret key
 
-defined('POSTS_PER_PAGE')       OR define('POSTS_PER_PAGE', 5); // no errors
+//defined('POSTS_PER_PAGE')       OR define('POSTS_PER_PAGE', 3); // no errors

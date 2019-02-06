@@ -8,6 +8,14 @@
 
 class Settings_model extends CI_Model{
 
+    public  function load_settings()
+    {
+        $query = $this->db->get('settings');
+        $data = $query->result();
+
+        return $data;
+    }
+
     public function update_settings($updated_data = null)
     {
 

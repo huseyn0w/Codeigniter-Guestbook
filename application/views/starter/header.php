@@ -40,9 +40,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body class="<?php echo uri_string() ?>">
 
 
-<?php require_template_part('nav') ?>
+<?php require_template_part('nav', $data) ?>
 
-<?php if(uri_string() !== "register"): ?>
+<?php if(uri_string() !== "register" && !empty($data['settings'])): ?>
+
 <!-- Page Header -->
 <header class="masthead" style="background-image: url('<?php echo asset_url() ?>/img/home-bg.jpg')">
     <div class="overlay"></div>
@@ -50,8 +51,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="site-heading">
-                    <h1>CI Guestbook</h1>
-                    <span class="subheading">Simple guestbook created on Codeigniter framework with love!</span>
+                    <h1><?php echo $data['settings'][2]->value ?></h1>
+                    <span class="subheading"><?php echo $data['settings'][4]->value ?></span>
                 </div>
             </div>
         </div>

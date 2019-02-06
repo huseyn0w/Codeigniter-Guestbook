@@ -10,7 +10,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $auth_error = $this->session->flashdata('LOGIN_FAIL');
 
-require_template_part('header', $auth_error ); ?>
+$data['auth_error'] = $auth_error;
+$data['settings'] = $settings;
+
+
+require_template_part('header', $data ); ?>
 
 
     <!-- Main Content -->
@@ -58,4 +62,4 @@ require_template_part('header', $auth_error ); ?>
 
     <hr>
 
-<?php require_template_part('footer') ?>
+<?php require_template_part('footer', $data) ?>

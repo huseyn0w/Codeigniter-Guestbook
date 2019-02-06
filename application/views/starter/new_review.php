@@ -6,7 +6,9 @@
  * Time: 1:42
  */
 
-require_template_part('header' ); ?>
+$data['settings'] = $settings;
+
+require_template_part('header', $data ); ?>
 
 
     <!-- Main Content -->
@@ -104,4 +106,4 @@ require_template_part('header' ); ?>
 
     <hr>
 
-<?php require_template_part('footer') ?>
+<?php require_template_part('footer', $data) ?>

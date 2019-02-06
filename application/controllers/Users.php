@@ -29,6 +29,9 @@ class Users extends CI_Controller {
     {
         if(!is_logged_in()) redirect(BASE_URL);
 
+        $this->load->model('settings_model');
+        $data['settings'] = $this->settings_model->load_settings();
+
         $username = get_current_username();
         $this->load->model('users_model');
         $user_info = $this->users_model->get_user_info($username);

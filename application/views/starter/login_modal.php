@@ -22,8 +22,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <?php
 
                     echo validation_errors("<div class=\"alert alert-danger\" role=\"alert\">", "</div>");
-                    if(!empty($data)): ?>
-                        <div class="alert alert-danger" role="alert"><?php echo $data ?></div>
+                    if(!empty($data['auth_error'])): ?>
+                        <div class="alert alert-danger" role="alert"><?php echo $data['auth_error'] ?></div>
                     <?php endif;
                     echo form_open('users/login'); ?>
                         <div class="form-group">

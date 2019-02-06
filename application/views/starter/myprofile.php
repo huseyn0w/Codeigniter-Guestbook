@@ -7,7 +7,10 @@
  */
 
 
-require_template_part('header' ); ?>
+$data['settings'] = $settings;
+
+
+require_template_part('header', $data ); ?>
 
 <?php if(!empty($user_info)): ?>
 
@@ -59,4 +62,4 @@ require_template_part('header' ); ?>
 
 <?php endif; ?>
 
-<?php require_template_part('footer') ?>
+<?php require_template_part('footer', $data) ?>

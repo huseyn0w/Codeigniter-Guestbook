@@ -103,6 +103,9 @@ class Reviews_model extends CI_Model{
 
     public function show_reviews($posts_start_count = 1)
     {
+        $data = $this->config->item('database_values');
+
+        $posts_per_page = $data['1']['posts_per_page'];
         if($posts_start_count === 1){
             $posts_start_count = 0;
         }
@@ -111,7 +114,7 @@ class Reviews_model extends CI_Model{
         $this->db->select('id, header, excerpt, created_date, author_id');
         $this->db->where('approved', '1');
         $this->db->order_by('created_date', 'desc');
-        $this->db->limit(POSTS_PER_PAGE, $posts_start_count);
+        $this->db->limit( $posts_per_page , $posts_start_count);
         $query = $this->db->get('reviews');
 
 
