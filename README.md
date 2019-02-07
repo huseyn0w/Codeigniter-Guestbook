@@ -1,7 +1,7 @@
 # Mini guest book based on Codeigniter PHP MVC framework created by Elman Huseynov.
 
 
-[Demo](https://ci_guestbook.ehuseynov.com)
+[Demo](https://ci-guestbook.ehuseynov.com)
 
 [My Website](https://ehuseynov.com/)
 
