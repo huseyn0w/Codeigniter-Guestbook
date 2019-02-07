@@ -44,10 +44,14 @@ require_template_part('header', $data ); ?>
                   <?php echo $review->excerpt; ?>
               </h3>
             </a>
+        <?php if(isset($review->author_name)): ?>
             <p class="post-meta">Posted by
               <a href="<?php echo BASE_URL ?>users/<?php echo $review->author_name; ?>"><?php echo $review->author_name; ?></a>
               on <?php echo $review->created_date; ?>
             </p>
+        <?php else: ?>
+        <p class="post-meta">Posted on <?php echo $review->created_date; ?></p>
+        <?php endif; ?>
           </div>
         </div>
 
