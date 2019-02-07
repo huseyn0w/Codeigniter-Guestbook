@@ -64,7 +64,7 @@ class Admin extends CI_Controller{
                     $small_headline = filter_var($this->input->post('small_headline'), FILTER_SANITIZE_STRING);
                     $main_title= filter_var($this->input->post('main_title'), FILTER_SANITIZE_STRING);
 
-                    require_once(getcwd().'\application\libraries\htmlpurifier\HTMLPurifier.auto.php');
+                    require_once(getcwd().'/application/libraries/htmlpurifier/HTMLPurifier.auto.php');
 
                     $config = HTMLPurifier_Config::createDefault();
                     $purifier = new HTMLPurifier($config);

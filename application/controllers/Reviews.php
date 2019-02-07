@@ -108,7 +108,7 @@ class Reviews extends CI_Controller {
 
             if ($this->form_validation->run() === TRUE && $recaptcha->score >= 0.5)
             {
-                require_once(getcwd().'\application\libraries\htmlpurifier\HTMLPurifier.auto.php');
+                require_once(getcwd().'/application/libraries/htmlpurifier/HTMLPurifier.auto.php');
 
 
                 $title = filter_var($this->input->post('title'), FILTER_SANITIZE_STRING);
