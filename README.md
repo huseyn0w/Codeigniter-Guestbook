@@ -24,8 +24,8 @@
 
 ***Installation:***
 - Copy all folders to your server.
-- Change database config in ***application/config/database.php***, and upload SQL file called ***database.sql*** to your database
-- Change default constants on Google Recaptcha private/public key, website URL and etc in ***application/config/constants.php***
+- Change database config in ***application/config/database.php***, <br> and upload SQL file called ***database.sql*** to your database
+- Change default constants on Google Recaptcha private/public key, website URL and etc in <br> ***application/config/constants.php***
 
 Thats it ! =)
 
