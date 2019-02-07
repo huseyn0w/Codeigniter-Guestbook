@@ -81,9 +81,10 @@ class Reviews extends CI_Controller {
         $this->load->view(CURRENT_TEMPLATE.'/full_review', $data);
     }
 
-    public function add()
+    public function add($prefix = null)
     {
-        if(!is_logged_in()) redirect(BASE_URL);
+        if(!is_logged_in() || !is_null($prefix)) redirect(BASE_URL);
+
 
         $this->load->model('settings_model');
         $data['settings'] = $this->settings_model->load_settings();

@@ -120,12 +120,21 @@ class Admin extends CI_Controller{
 
         $this->load->model('reviews_model');
 
+        $this->load->model('settings_model');
+        $data['settings'] = $this->settings_model->load_settings();
+
         $this->load->library('pagination');
 
         $config['total_rows'] = $this->reviews_model->get_total_page_count();
         $config['base_url'] = BASE_URL.'admin/reviews/more/';
         $config['first_url'] = BASE_URL.'admin/reviews/';
-        $config['per_page'] = 10;
+
+        if(isset($data['settings'])){
+            $config['per_page'] = $data['settings'][1]->value;
+        }
+        else{
+            $config['per_page'] = POSTS_PER_PAGE;
+        }
         $config['attributes'] = array('class' => 'btn btn-primary custom-admin-pagination');
         $config['next_link'] = "Next Page";
         $config['prev_link'] = "Prev Page";
