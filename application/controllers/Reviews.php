@@ -10,9 +10,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Reviews extends CI_Controller {
 
-    public function ajax_action($id)
+    public function ajax_action($id = null)
     {
-        if(!is_logged_in() || !$this->input->is_ajax_request()) return false;
+        if(!is_logged_in() || !$this->input->is_ajax_request() || $id === null) return false;
+
         $id = (int) $id;
         $postType = $this->input->post('postType');
 
@@ -45,14 +46,16 @@ class Reviews extends CI_Controller {
     }
 
 
-    public function full($id)
+    public function full($id = null)
     {
-        if(!is_logged_in()) redirect(BASE_URL);
+        if(!is_logged_in() || $id === null) redirect(BASE_URL);
         return $this->show($id);
     }
 
-    public function show($id)
+    public function show($id = null)
     {
+        if($id === null) redirect(BASE_URL);
+
         $id = (int) $id;
 
         if(!isset($id) || $id <= 0 ) redirect(BASE_URL);
@@ -107,7 +110,7 @@ class Reviews extends CI_Controller {
                 require_once(getcwd().'\application\libraries\htmlpurifier\HTMLPurifier.auto.php');
 
 
-                $title = filter_var($this->input->post('title'), FILTER_SANITIZE_EMAIL);
+                $title = filter_var($this->input->post('title'), FILTER_SANITIZE_STRING);
                 $excerpt = filter_var($this->input->post('excerpt'), FILTER_SANITIZE_STRING);
 
                 $full_review = $this->input->post('fullreview');

@@ -57,7 +57,7 @@ require_template_part('header', $data ); ?>
       </div>
         <!-- Pager -->
         <div class="clearfix text-center">
-            <?php echo $links ?>
+            <?php if(!empty($links)) echo $links ?>
         </div>
     </div>
 

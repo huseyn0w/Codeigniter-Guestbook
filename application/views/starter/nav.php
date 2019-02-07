@@ -36,9 +36,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="modal" data-target="#loginModal" href="#">Log in</a>
                     </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo BASE_URL?>register">Register</a>
-                        </li>
                     <?php endif; ?>
 
             </ul>

@@ -10,9 +10,21 @@ class Settings_model extends CI_Model{
 
     public function get_pages()
     {
-        if(!is_logged_in()){
-            $this->db->where('visibility', '2');
+        $this->db->select('title, url');
+        if(!is_logged_in()) {
+            $this->db->where('visibility IN (0,1)');
         }
+        else{
+            if(get_current_status() === 7){
+                $this->db->where('visibility IN (1,2,3)');
+            }
+            else{
+                $this->db->where('visibility IN (1,2)');
+            }
+
+        }
+
+
         $query = $this->db->get('front_pages');
         $data = $query->result();
 

@@ -28,11 +28,14 @@ class Pages extends CI_Controller {
 
     public function show_profile_info($username = null)
     {
+
+
+        if(is_null($username)) $username = get_current_username();
+
         $this->load->model('settings_model');
         $data['settings'] = $this->settings_model->load_settings();
         $data['pages'] = $this->settings_model->get_pages();
 
-        if(is_null($username)) $username = get_current_username();
         $this->load->model('users_model');
         $user_info = $this->users_model->get_user_info($username);
 
