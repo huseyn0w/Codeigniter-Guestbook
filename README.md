@@ -24,11 +24,15 @@
 
 ***Installation:***
 - Copy all folders to your server.
-- Change database config in ***application/config/database.php***, <br> and upload SQL file called ***database.sql*** to your database
+- Change database config in ***application/config/database.php***, <br> and upload SQL file called ***ci_guestbook.sql*** to your database
 - Change default constants on Google Recaptcha private/public key, website URL and etc in <br> ***application/config/constants.php***
 
-Thats it ! =)
+
 
 ***Admin login:***
 - username: admin
 - password: 123456
+
+Administrator can approve new reviews, read it before approval, or/and delete them from admin panel.
+
+Thats it ! =)
