@@ -24,7 +24,7 @@ function asset_url()
 
 function require_template_part($filename, $data = null)
 {
-    require_once(getcwd().'\application\views\\'.CURRENT_TEMPLATE.'\\'.$filename.'.php');
+    require_once(getcwd().'/application/views/'.CURRENT_TEMPLATE.'/'.$filename.'.php');
 }
 
 function is_logged_in()
