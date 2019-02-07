@@ -31,6 +31,7 @@ class Users extends CI_Controller {
 
         $this->load->model('settings_model');
         $data['settings'] = $this->settings_model->load_settings();
+        $data['pages'] = $this->settings_model->get_pages();
 
         $username = get_current_username();
         $this->load->model('users_model');
@@ -216,6 +217,10 @@ class Users extends CI_Controller {
 
     public function register()
     {
+        $this->load->model('settings_model');
+        $data['settings'] = $this->settings_model->load_settings();
+        $data['pages'] = $this->settings_model->get_pages();
+
         $registerButton = $this->input->post('try_to_register');
         $recaptcha_response = $this->input->post('recaptcha_response');
 
@@ -264,7 +269,7 @@ class Users extends CI_Controller {
 
         }
 
-        $this->load->view(CURRENT_TEMPLATE.'/register');
+        $this->load->view(CURRENT_TEMPLATE.'/register', $data);
     }
 
 }

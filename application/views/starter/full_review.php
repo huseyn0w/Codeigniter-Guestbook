@@ -7,7 +7,14 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-require_template_part('header') ?>
+$auth_error = $this->session->flashdata('LOGIN_FAIL');
+
+$data['auth_error'] = $auth_error;
+$data['settings'] = $settings;
+$data['pages'] = $pages;
+
+
+require_template_part('header', $data) ?>
 
 
 <div class="container">

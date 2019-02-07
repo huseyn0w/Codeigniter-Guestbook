@@ -7,8 +7,15 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 if(is_logged_in()) redirect(BASE_URL);
+
+$auth_error = $this->session->flashdata('LOGIN_FAIL');
+
+$data['auth_error'] = $auth_error;
+$data['settings'] = $settings;
+$data['pages'] = $pages;
+
 ?>
-<?php require_template_part('header') ?>
+<?php require_template_part('header', $data) ?>
 <section class="auth_cover">
     <div class="container">
         <h2>Registration</h2>

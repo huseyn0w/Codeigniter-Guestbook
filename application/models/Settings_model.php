@@ -8,6 +8,17 @@
 
 class Settings_model extends CI_Model{
 
+    public function get_pages()
+    {
+        if(!is_logged_in()){
+            $this->db->where('visibility', '2');
+        }
+        $query = $this->db->get('front_pages');
+        $data = $query->result();
+
+        return $data;
+    }
+
     public  function load_settings()
     {
         $query = $this->db->get('settings');

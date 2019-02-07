@@ -17,34 +17,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo BASE_URL ?>">Home</a>
-                </li>
-            <?php if(!is_logged_in()): ?>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="modal" data-target="#loginModal" href="#">Log in</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo BASE_URL ?>register">Registration</a>
-                </li>
-            <?php endif; ?>
-            <?php if(is_logged_in()): ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo BASE_URL ?>myprofile">Profile</a>
-                </li>
-            <?php if(get_current_status() === 7): ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo BASE_URL ?>admin">Admin panel</a>
-                </li>
-            <?php endif; ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo BASE_URL ?>reviews/add">Add new review</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo BASE_URL ?>logout">Logout</a>
-                </li>
-            <?php endif; ?>
+                <ul class="navbar-nav ml-auto">
+                    <?php if(isset($data['pages']) && !empty($data['pages'])):
+
+                        //echo uri_string();
+                            foreach ($data['pages'] as $page):
+                                $active = '';
+                                //echo $page->url;
+                                if(uri_string() === $page->url ) $active = 'active';
+                        ?>
+                        <li class="nav-item my-item <?php echo $active ?>">
+                            <a class="nav-link"  href="<?php echo BASE_URL.$page->url ?>"><?php echo $page->title ?></a>
+                        </li>
+
+                    <?php endforeach; endif;
+
+                    if(!is_logged_in()):?>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="modal" data-target="#loginModal" href="#">Log in</a>
+                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo BASE_URL?>register">Register</a>
+                        </li>
+                    <?php endif; ?>
+
             </ul>
         </div>
     </div>

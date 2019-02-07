@@ -57,6 +57,10 @@ class Reviews extends CI_Controller {
 
         if(!isset($id) || $id <= 0 ) redirect(BASE_URL);
 
+        $this->load->model('settings_model');
+        $data['settings'] = $this->settings_model->load_settings();
+        $data['pages'] = $this->settings_model->get_pages();
+
         $this->load->model('reviews_model');
 
         $full_review = $this->reviews_model->show($id);
@@ -80,6 +84,7 @@ class Reviews extends CI_Controller {
 
         $this->load->model('settings_model');
         $data['settings'] = $this->settings_model->load_settings();
+        $data['pages'] = $this->settings_model->get_pages();
 
 
         $add_new_review = $this->input->post('add_new_review');

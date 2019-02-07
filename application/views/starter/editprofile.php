@@ -8,7 +8,12 @@
 
 if(!is_logged_in()) redirect(BASE_URL);
 
+$auth_error = $this->session->flashdata('LOGIN_FAIL');
+
+$data['auth_error'] = $auth_error;
 $data['settings'] = $settings;
+$data['pages'] = $pages;
+
 
 require_template_part('header', $data ); ?>
 

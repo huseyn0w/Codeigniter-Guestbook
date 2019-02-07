@@ -41,3 +41,12 @@ body.register{
     margin: 0 7px;
 }
 
+.my-item a{
+    opacity: 0.8 !important;
+}
+
+.my-item.active a{
+    opacity: 1 !important;
+}
+
+
