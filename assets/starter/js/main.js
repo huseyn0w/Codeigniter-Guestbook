@@ -12,7 +12,7 @@ $(function(){
 
     if($("#recaptchaResponse").length){
         grecaptcha.ready(function () {
-            grecaptcha.execute('6Lf4pY4UAAAAAFV0SfQrjCCC5Ttg4PCXsFrwncad', { action: 'contact' }).then(function (token) {
+            grecaptcha.execute(RECAPTCHA_PUBLIC_KEY, { action: 'contact' }).then(function (token) {
                 var recaptchaResponse = document.getElementById('recaptchaResponse');
                 recaptchaResponse.value = token;
             });
